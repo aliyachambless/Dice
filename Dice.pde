@@ -7,6 +7,7 @@ void setup()
 }
 void draw()
 {
+	background(0);
 	for(int y = 10; y < 400; y += 60){
 		for(int x = 10; x < 400; x += 60){
 			Die dice1 = new Die(x,y);
@@ -14,8 +15,8 @@ void draw()
 			total += dice1.numDots;
 		}
 	}
-	stroke(255,0,0);
-	text(total,400,430);
+	fill(255,0,0);
+	text("Total" + total,400,430);
 }
 void mousePressed()
 {
