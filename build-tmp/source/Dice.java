@@ -15,24 +15,25 @@ import java.io.IOException;
 public class Dice extends PApplet {
 
 int total = 0;
+int numDice = 5;
 public void setup()
 {
 	noLoop();
-	size(430,440);
+	size(400,500);
 	background(0);
 }
 public void draw()
 {
 	background(0);
-	for(int y = 10; y < 400; y += 60){
-		for(int x = 10; x < 400; x += 60){
-			Die dice1 = new Die(x,y);
+	for(int y = 0; y < 400; y += (400/numDice)){
+		for(int x = 0; x < 400; x += (400/numDice)){
+			Die dice1 = new Die(x,y,(400/numDice));
 			dice1.show();
 			total += dice1.numDots;
 		}
 	}
 	fill(255,0,0);
-	text(total,400,430);
+	text("Total" + total,400,430);
 }
 public void mousePressed()
 {
@@ -41,10 +42,12 @@ public void mousePressed()
 class Die //models one single dice cube
 {
 	int dieX, dieY, numDots;
-	Die(int x, int y) //constructor
+	float diceSize;
+	Die(int x, int y, float dieSize) //constructor
 	{
 		dieX = x;
 		dieY = y;
+		diceSize = dieSize;
 		numDots = (int)(Math.random() * 6)+1 ;
 	}
 	public void roll()
@@ -54,45 +57,45 @@ class Die //models one single dice cube
 	public void show()
 	{
 		fill(255);
-		rect(dieX, dieY, 50,50);
+		rect(dieX, dieY, diceSize,diceSize);
 		if(numDots == 1){
 			fill(0);
-			ellipse(dieX + 25, dieY + 25, 10,10);
+			ellipse(dieX + diceSize/2, dieY + diceSize/2, diceSize/5,diceSize/5);
 		}
 		if(numDots == 2){
 			fill(0);
-			ellipse(dieX + 15, dieY + 15, 10,10);
-			ellipse(dieX + 35, dieY + 35, 10,10);
+			ellipse(dieX + diceSize/3.33f, dieY + diceSize/3.33f, diceSize/5,diceSize/5);
+			ellipse(dieX + diceSize/1.43f, dieY + diceSize/1.43f, diceSize/5,diceSize/5);
 		}
 		if(numDots == 3){
 			fill(0);
-			ellipse(dieX + 25, dieY + 25, 10,10);
-			ellipse(dieX + 25, dieY + 10, 10,10);
-			ellipse(dieX + 25, dieY + 40, 10,10);
+			ellipse(dieX + diceSize/2, dieY + diceSize/2, diceSize/5,diceSize/5);
+			ellipse(dieX + diceSize/2, dieY + diceSize/5, diceSize/5,diceSize/5);
+			ellipse(dieX + diceSize/2, dieY + diceSize/1.25f, diceSize/5,diceSize/5);
 		}
 		if(numDots == 4){
 			fill(0);
-			ellipse(dieX + 15, dieY + 15, 10,10);
-			ellipse(dieX + 35, dieY + 35, 10,10);
-			ellipse(dieX + 15, dieY + 35, 10,10);
-			ellipse(dieX + 35, dieY + 15, 10,10);
+			ellipse(dieX + diceSize/3.33f, dieY + diceSize/3.33f, diceSize/5,diceSize/5);
+			ellipse(dieX + diceSize/1.43f, dieY + diceSize/1.43f, diceSize/5,diceSize/5);
+			ellipse(dieX + diceSize/3.33f, dieY + diceSize/1.43f, diceSize/5,diceSize/5);
+			ellipse(dieX + diceSize/1.43f, dieY + diceSize/3.33f, diceSize/5,diceSize/5);
 		}
 		if(numDots == 5){
 			fill(0);
-			ellipse(dieX + 15, dieY + 15, 10,10);
-			ellipse(dieX + 35, dieY + 35, 10,10);
-			ellipse(dieX + 15, dieY + 35, 10,10);
-			ellipse(dieX + 35, dieY + 15, 10,10);
-			ellipse(dieX + 25, dieY + 25, 10,10);
+			ellipse(dieX + diceSize/3.33f, dieY + diceSize/3.33f, diceSize/5,diceSize/5);
+			ellipse(dieX + diceSize/1.43f, dieY + diceSize/1.43f, diceSize/5,diceSize/5);
+			ellipse(dieX + diceSize/3.33f, dieY + diceSize/1.43f, diceSize/5,diceSize/5);
+			ellipse(dieX + diceSize/1.43f, dieY + diceSize/3.33f, diceSize/5,diceSize/5);
+			ellipse(dieX + diceSize/2, dieY + diceSize/2, diceSize/5,diceSize/5);
 		}
 		if(numDots == 6){
 			fill(0);
-			ellipse(dieX + 15, dieY + 25, 10,10);
-			ellipse(dieX + 15, dieY + 10, 10,10);
-			ellipse(dieX + 15, dieY + 40, 10,10);
-			ellipse(dieX + 35, dieY + 25, 10,10);
-			ellipse(dieX + 35, dieY + 10, 10,10);
-			ellipse(dieX + 35, dieY + 40, 10,10);
+			ellipse(dieX + diceSize/3.33f, dieY + diceSize/2, diceSize/5,diceSize/5);
+			ellipse(dieX + diceSize/3.33f, dieY + diceSize/5, diceSize/5,diceSize/5);
+			ellipse(dieX + diceSize/3.33f, dieY + diceSize/1.25f, diceSize/5,diceSize/5);
+			ellipse(dieX + diceSize/1.43f, dieY + diceSize/2, diceSize/5,diceSize/5);
+			ellipse(dieX + diceSize/1.43f, dieY + diceSize/5, diceSize/5,diceSize/5);
+			ellipse(dieX + diceSize/1.43f, dieY + diceSize/1.25f, diceSize/5,diceSize/5);
 		}
 	}
 }
