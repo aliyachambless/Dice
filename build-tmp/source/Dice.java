@@ -15,7 +15,10 @@ import java.io.IOException;
 public class Dice extends PApplet {
 
 int total = 0;
-int numDice = 5;
+float numDice = 2;
+float average;
+int totalDice;
+float percentError;
 public void setup()
 {
 	noLoop();
@@ -25,18 +28,39 @@ public void setup()
 public void draw()
 {
 	background(0);
-	for(int y = 0; y < 400; y += (400/numDice)){
-		for(int x = 0; x < 400; x += (400/numDice)){
-			Die dice1 = new Die(x,y,(400/numDice));
+	for(int y = 0; y <= 400 - (400/numDice); y += (400/numDice)){
+		for(int x = 0; x <= 400 - (400/numDice); x += (400/numDice)){
+			Die dice1 = new Die(x,y,(int)(400/numDice));
 			dice1.show();
 			total += dice1.numDots;
+			totalDice += 1;
 		}
 	}
+	average = total/totalDice;
+	percentError = (3.5f - average)/3.5f;
 	fill(255,0,0);
-	text("Total" + total,400,430);
+	text("Total Dice: " + totalDice,50,430);
+	text("Total Score: " + total,150,430);
+	text("Average: " + average, 250, 430);
+	text("Percent Error: " + percentError*100 + "%", 100, 450);
+
 }
 public void mousePressed()
 {
+	total = 0;
+	totalDice = 0;
+	redraw();
+}
+public void keyPressed()
+{
+	total = 0;
+	totalDice = 0;
+	if(keyCode == 38){
+		numDice+=1;
+	}
+	if(keyCode == 40){
+		numDice -= 1;
+	}
 	redraw();
 }
 class Die //models one single dice cube
