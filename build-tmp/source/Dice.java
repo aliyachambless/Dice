@@ -17,7 +17,7 @@ public class Dice extends PApplet {
 int total = 0;
 float numDice = 2;
 float average;
-int totalDice;
+float totalDice;
 float percentError;
 public void setup()
 {

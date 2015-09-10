@@ -1,7 +1,7 @@
 int total = 0;
 float numDice = 2;
 float average;
-int totalDice;
+float totalDice;
 float percentError;
 void setup()
 {
