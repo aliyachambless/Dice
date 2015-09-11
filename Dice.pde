@@ -42,7 +42,7 @@ void keyPressed()
 	if(keyCode == 38){
 		numDice+=1;
 	}
-	if(keyCode == 40){
+	if(keyCode == 40 && numDice > 1){
 		numDice -= 1;
 	}
 	redraw();
