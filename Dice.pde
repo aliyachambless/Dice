@@ -12,8 +12,8 @@ void setup()
 void draw()
 {
 	background(0);
-	for(int y = 0; y <= 400 - (400/numDice); y += (400/numDice)){
-		for(int x = 0; x <= 400 - (400/numDice); x += (400/numDice)){
+	for(int y = 0; y <= 400 - (400/numDice) + 1; y += (400/numDice)){
+		for(int x = 0; x <= 400 - (400/numDice) + 1; x += (400/numDice)){
 			Die dice1 = new Die(x,y,(int)(400/numDice));
 			dice1.show();
 			total += dice1.numDots;
